@@ -5,8 +5,8 @@ import { galleryItems } from "./gallery-items.js";
 
 const itemConatainer = document.querySelector(".gallery");
 const itemConatainerMarkup = createGalleryItems(galleryItems);
-console.log(createGalleryItems(galleryItems));
-
+// console.log(createGalleryItems(galleryItems));
+let openOriginalImage;
 itemConatainer.insertAdjacentHTML("beforeend", itemConatainerMarkup);
 
 function createGalleryItems(galleryItems) {
@@ -24,4 +24,16 @@ function createGalleryItems(galleryItems) {
 </div>`;
     })
     .join("");
+}
+itemConatainer.addEventListener("click", onItemConatainerClick);
+
+function onItemConatainerClick(e) {
+  e.preventDefault();
+  if (e.target.nodeName !== "IMG") {
+    return;
+  }
+  openOriginalImage = basicLightbox.create(`
+		<img src="${e.target.dataset.source}" width="1280" height="900">
+	`);
+  openOriginalImage.show();
 }
