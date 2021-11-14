@@ -6,7 +6,7 @@ import { galleryItems } from "./gallery-items.js";
 const itemConatainer = document.querySelector(".gallery");
 const itemConatainerMarkup = createGalleryItems(galleryItems);
 // console.log(createGalleryItems(galleryItems));
-let openOriginalImage;
+
 itemConatainer.insertAdjacentHTML("beforeend", itemConatainerMarkup);
 
 function createGalleryItems(galleryItems) {
@@ -32,7 +32,7 @@ function onItemConatainerClick(e) {
   if (e.target.nodeName !== "IMG") {
     return;
   }
-  openOriginalImage = basicLightbox.create(`
+  const openOriginalImage = basicLightbox.create(`
 		<img src="${e.target.dataset.source}" width="1280" height="900">
 	`);
   openOriginalImage.show();
